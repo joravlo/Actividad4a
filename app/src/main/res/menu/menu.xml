@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/estudiante"
+        android:title="Estudiante">
+    <menu>
+        <item
+            android:id="@+id/nuevoEstudiante"
+            android:title="Nuevo Estudiante" />
+        <item
+            android:id="@+id/borraEstudiante"
+            android:title="Borrar Estudiante" />
+        <item
+            android:id="@+id/consulta"
+            android:title="Consulta"/>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/profesor"
+        android:title="Profesor">
+        <menu>
+            <item
+                android:id="@+id/nuevoProfesor"
+                android:title="Nuevo Profesor" />
+            <item
+                android:id="@+id/borraProfesor"
+                android:title="Borrar Profesor" />
+            <item
+                android:id="@+id/consultaProfesor"
+                android:title="Consulta"/>
+        </menu>
+    </item>
+
+
+</menu>
