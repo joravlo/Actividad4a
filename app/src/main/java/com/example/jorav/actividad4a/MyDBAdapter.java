@@ -182,6 +182,26 @@ public class MyDBAdapter {
         return profesores;
     }
 
+    public void updateAlumno(String nombre, int edad, String ciclo, String curso, double nota, int  id){
+        ContentValues valores = new ContentValues();
+        valores.put("nombre",nombre);
+        valores.put("edad",edad);
+        valores.put("ciclo",ciclo);
+        valores.put("curso",curso);
+        valores.put("nota",nota);
+        db.update(DATABASE_TABLE_ALUMNOS,valores,"id="+id,null);
+    }
+
+    public void updateProfesor(String nombre, int edad, String ciclo, String tutoria, String despacho, int  id){
+        ContentValues valores = new ContentValues();
+        valores.put("nombre",nombre);
+        valores.put("edad",edad);
+        valores.put("ciclo",ciclo);
+        valores.put("tutoria",tutoria);
+        valores.put("despacho",despacho);
+        db.update(DATABASE_TABLE_PROFESORES,valores,"id="+id,null);
+    }
+
     private static class MyDbHelper extends SQLiteOpenHelper{
 
         public MyDbHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {

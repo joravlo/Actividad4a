@@ -1,10 +1,12 @@
 package com.example.jorav.actividad4a;
 
+import java.io.Serializable;
+
 /**
  * Created by jorav on 19/12/2016.
  */
 
-public class Alumno {
+public class Alumno implements Serializable {
     String nombre, ciclo, curso;
     int edad,id;
     double nota;
