@@ -31,6 +31,8 @@
                 android:title="Consulta"/>
         </menu>
     </item>
-
+    <item
+        android:id="@+id/consultaExamen"
+        android:title="Consulta Examen" />
 
 </menu>

@@ -182,6 +182,50 @@ public class MyDBAdapter {
         return profesores;
     }
 
+    //Consulta añadida para el examen
+    public ArrayList<Profesor> consultaProfesorExamen(String condicion,String letra){
+        ArrayList<Profesor> profesores = new ArrayList<>();
+        String[] campos = new String[] {"id", "nombre","edad","ciclo","tutoria","despacho"};
+        Cursor cursor = db.query(DATABASE_TABLE_PROFESORES,campos,condicion,new String[] { letra+"%" },null,null,null);
+        if (cursor != null && cursor.moveToFirst()){
+            do{
+                int id = cursor.getInt(0);
+                String nombre = cursor.getString(1);
+                String ciclo = cursor.getString(3);
+                String tutoria = cursor.getString(4);
+                int edad = cursor.getInt(2);
+                String despacho = cursor.getString(5);
+                Profesor profesor = new Profesor(id,edad,nombre,ciclo,tutoria,despacho);
+                profesores.add(profesor);
+                Log.d("DATOS CONSULTA",id+" "+nombre+" "+ciclo+" "+tutoria+" "+edad+" "+despacho);
+            }while (cursor.moveToNext());
+        }
+
+        return profesores;
+    }
+
+    //Consulta añadida para el examen
+    public  ArrayList<Alumno> consultaAlumnoExamen(String condicion, String letra){
+        ArrayList<Alumno> alumnos = new ArrayList<>();
+        String[] campos = new String[] {"id", "nombre","edad","ciclo","curso","nota"};
+        Cursor cursor = db.query(DATABASE_TABLE_ALUMNOS,campos,condicion,new String[] { letra+"%" },null,null,null);
+        if (cursor != null && cursor.moveToFirst()){
+            do{
+                int id = cursor.getInt(0);
+                String nombre = cursor.getString(1);
+                String ciclo = cursor.getString(3);
+                String curso = cursor.getString(4);
+                int edad = cursor.getInt(2);
+                double nota = cursor.getFloat(5);
+                Alumno alumno = new Alumno(id,nombre,ciclo,curso,edad,nota);
+                alumnos.add(alumno);
+                Log.d("DATOS CONSULTA",id+" "+nombre+" "+ciclo+" "+curso+" "+edad+" "+nota);
+            }while (cursor.moveToNext());
+        }
+
+        return alumnos;
+    }
+
     public void updateAlumno(String nombre, int edad, String ciclo, String curso, double nota, int  id){
         ContentValues valores = new ContentValues();
         valores.put("nombre",nombre);

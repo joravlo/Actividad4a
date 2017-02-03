@@ -386,6 +386,43 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 return true;
+            case R.id.consultaExamen:
+                //Codigo añadido para el examen
+                AlertDialog.Builder builderConsultaExamen = new AlertDialog.Builder(this);
+                LayoutInflater inflaterConsultaExamen = this.getLayoutInflater();
+                View dialogViewConsultaExamen= inflaterConsultaExamen.inflate(R.layout.consulta_examen,null);
+                builderConsultaExamen.setView(dialogViewConsultaExamen);
+
+                final EditText etLetra = (EditText) dialogViewConsultaExamen.findViewById(R.id.etLetra);
+
+                Button btnConsultaExamen = (Button) dialogViewConsultaExamen.findViewById(R.id.btnConsultaExamen);
+                Button btnCancelarExamen = (Button) dialogViewConsultaExamen.findViewById(R.id.btnCancelarExamen);
+                final AlertDialog alertDialoConsultaExamen = builderConsultaExamen.create();
+                alertDialoConsultaExamen.show();
+                btnConsultaExamen.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //Recuperamos los profesores y los alumnos
+                        profesores.clear();
+                        profesores = dbAdapter.consultaProfesorExamen("nombre LIKE ?",etLetra.getText().toString());
+                        alumnos.clear();
+                        alumnos = dbAdapter.consultaAlumnoExamen("nombre LIKE ?",etLetra.getText().toString());
+                        //Añadimos la lista de profesores y alumnos a sus respectivos adaptadores
+                        adaptador = new Adaptador(alumnos);
+                        recyclerView.setAdapter(adaptador);
+                        adaptadorProfesor = new AdaptadorProfesor(profesores);
+                        recyclerViewProfesores.setAdapter(adaptadorProfesor);
+                        alertDialoConsultaExamen.dismiss();
+                    }
+                });
+
+                btnCancelarExamen.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        alertDialoConsultaExamen.dismiss();
+                    }
+                });
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
